@@ -39,7 +39,7 @@ library(ggplot2)
 set.seed(123)
 fviz_nbclust(kademo, kmeans, method = "wss") + geom_vline(xintercept = 4, linetype = 2)
 
-#then we know 3 is the best number of k
+#then we know 4 is the best number of k
 #visualize clusters
 kmeans_kademo =  kmeans(kademo, 4)
 kmeans_kademo
