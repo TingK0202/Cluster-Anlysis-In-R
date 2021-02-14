@@ -37,22 +37,22 @@ tendency_kademo$plot
 #try to calculate the sum of squared error and define the number of k
 library(ggplot2)
 set.seed(123)
-fviz_nbclust(kademo, kmeans, method = "wss") + geom_vline(xintercept = 3, linetype = 2)
+fviz_nbclust(kademo, kmeans, method = "wss") + geom_vline(xintercept = 4, linetype = 2)
 
 #then we know 3 is the best number of k
 #visualize clusters
-kmeans_kademo =  kmeans(kademo, 3)
+kmeans_kademo =  kmeans(kademo, 4)
+kmeans_kademo
 fviz_cluster(kmeans_kademo, data = kademo)
 
-# let's take a closer look at solution with k=3
+# let's take a closer look at solution with k=4
 print(kmeans_kademo$centers)  # these are the centroids
 
 # compare the Preference label with the cluster result
-table(kademo1$PreferenceGroup, kmeans_kademo$cluster)
+table(kademo1$PreferenceGroup, kmeans_kademo$cluster)                    
 
 ----------------------------------------------------------------------------------------------------------------------
-The Results are as follows:
-
+#The results are as follows:
 
 > # check working directory
 > getwd()
@@ -209,7 +209,7 @@ The Results are as follows:
 > #processing data, try to see if there are missing values
 > #if there are some missing values, try to see if na.omit() is useful
 > is.na(kademo1)
-       PreferenceGroup Gender MaritalStatus FirstTimePurchase AgeCategory ChildrenCategory 
+       PreferenceGroup Gender MaritalStatus FirstTimePurchase AgeCategory ChildrenCategory
   [1,]           FALSE  FALSE         FALSE             FALSE       FALSE            FALSE
   [2,]           FALSE  FALSE         FALSE             FALSE       FALSE            FALSE
   [3,]           FALSE  FALSE         FALSE             FALSE       FALSE            FALSE
@@ -540,24 +540,51 @@ IncomeCategory      1   4  3.7 1.6   6
 > #try to calculate the sum of squared error and define the number of k
 > library(ggplot2)
 > set.seed(123)
-> fviz_nbclust(kademo, kmeans, method = "wss") + geom_vline(xintercept = 3, linetype = 2)
+> fviz_nbclust(kademo, kmeans, method = "wss") + geom_vline(xintercept = 4, linetype = 2)
 > 
 > #then we know 3 is the best number of k
 > #visualize clusters
-> kmeans_kademo =  kmeans(kademo, 3)
+> kmeans_kademo =  kmeans(kademo, 4)
+> kmeans_kademo
+K-means clustering with 4 clusters of sizes 85, 57, 48, 60
+
+Cluster means:
+    Gender MaritalStatus FirstTimePurchase AgeCategory ChildrenCategory IncomeCategory
+1 1.552941      1.976471          1.882353    5.082353        0.6941176       2.976471
+2 1.491228      1.754386          1.824561    2.315789        0.7368421       4.982456
+3 1.354167      1.791667          1.937500    5.145833        0.5625000       5.479167
+4 1.466667      1.900000          1.766667    2.183333        0.4666667       2.000000
+
+Clustering vector:
+  [1] 3 4 4 1 1 2 2 1 4 2 1 3 1 2 1 3 4 4 1 2 1 3 3 4 1 1 1 1 2 3 1 3 3 4 4 4 3 4 2 2 3 2 2 4 1 1 4 1 3
+ [50] 2 2 1 1 2 3 4 2 1 1 2 2 1 1 3 3 1 1 1 2 4 4 1 3 1 2 2 3 3 2 4 1 4 3 2 1 3 2 2 4 4 2 4 1 4 1 2 2 1
+ [99] 1 3 1 2 1 1 2 4 1 1 4 4 1 1 3 1 1 4 4 3 1 2 1 1 3 2 4 4 4 3 2 1 2 1 3 4 3 2 4 4 1 1 1 4 1 3 1 1 3
+[148] 1 1 4 1 4 3 2 4 4 2 3 1 1 1 1 4 2 4 1 1 1 2 1 4 1 4 1 4 2 2 2 1 2 1 4 3 2 3 3 4 4 2 3 1 4 4 3 2 1
+[197] 4 2 4 2 3 3 2 2 3 2 1 1 1 1 4 4 1 3 1 4 3 1 2 3 1 3 3 2 3 1 3 2 3 2 4 1 2 1 4 4 4 1 4 2 4 1 4 4 3
+[246] 3 1 2 2 1
+
+Within cluster sum of squares by cluster:
+[1] 274.2118 169.4035 127.4792 194.9833
+ (between_SS / total_SS =  56.1 %)
+
+Available components:
+
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss" "betweenss"   
+[7] "size"         "iter"         "ifault"      
 > fviz_cluster(kmeans_kademo, data = kademo)
 > 
 > # let's take a closer look at solution with k=4
 > print(kmeans_kademo$centers)  # these are the centroids
     Gender MaritalStatus FirstTimePurchase AgeCategory ChildrenCategory IncomeCategory
-1 1.517647      1.952941          1.894118    5.270588        0.6352941       3.070588
-2 1.470588      1.882353          1.779412    2.132353        0.4852941       2.235294
-3 1.453608      1.793814          1.865979    3.597938        0.7113402       5.226804
+1 1.552941      1.976471          1.882353    5.082353        0.6941176       2.976471
+2 1.491228      1.754386          1.824561    2.315789        0.7368421       4.982456
+3 1.354167      1.791667          1.937500    5.145833        0.5625000       5.479167
+4 1.466667      1.900000          1.766667    2.183333        0.4666667       2.000000
 > 
 > # compare the Preference label with the cluster result
 > table(kademo1$PreferenceGroup, kmeans_kademo$cluster)
    
-     1  2  3
-  1 39 27 50
-  2 29 20 23
-  3 17 21 24
+     1  2  3  4
+  1 35 30 28 23
+  2 30 12 13 17
+  3 20 15  7 20
