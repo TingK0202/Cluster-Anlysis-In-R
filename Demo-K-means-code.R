@@ -45,7 +45,7 @@ kmeans_kademo =  kmeans(kademo, 4)
 kmeans_kademo
 fviz_cluster(kmeans_kademo, data = kademo)
 
-# let's take a closer look at solution with k=3
+# let's take a closer look at solution with k=4
 print(kmeans_kademo$centers)  # these are the centroids
 
 # compare the Preference label with the cluster result
