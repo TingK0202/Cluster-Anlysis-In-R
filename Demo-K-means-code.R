@@ -45,9 +45,6 @@ kmeans_kademo =  kmeans(kademo, 4)
 kmeans_kademo
 fviz_cluster(kmeans_kademo, data = kademo)
 
-# let's take a closer look at solution with k=4
-print(kmeans_kademo$centers)  # these are the centroids
-
 # compare the Preference label with the cluster result
 table(kademo1$PreferenceGroup, kmeans_kademo$cluster)                 
 
@@ -715,15 +712,7 @@ Available components:
 [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
 [6] "betweenss"    "size"         "iter"         "ifault"      
 > fviz_cluster(kmeans_kademo, data = kademo)
-> 
-> # let's take a closer look at solution with k=3
-> print(kmeans_kademo$centers)  # these are the centroids
-    Gender MaritalStatus FirstTimePurchase AgeCategory ChildrenCategory IncomeCategory
-1 1.552941      1.976471          1.882353    5.082353        0.6941176       2.976471
-2 1.491228      1.754386          1.824561    2.315789        0.7368421       4.982456
-3 1.354167      1.791667          1.937500    5.145833        0.5625000       5.479167
-4 1.466667      1.900000          1.766667    2.183333        0.4666667       2.000000
-> 
+
 > # compare the Preference label with the cluster result
 > table(kademo1$PreferenceGroup, kmeans_kademo$cluster)
    
